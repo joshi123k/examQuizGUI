@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       this.snake.open(
         "Username is required!!",'',{duration:3000}
       );
+      return
     }
 
     if(this.loginData.password.trim()=='' || this.loginData.password.trim()==null)
@@ -32,7 +33,10 @@ export class LoginComponent implements OnInit {
       this.snake.open(
         "password is required!!",'',{duration:3000}
       );
+      return
     }
+
+
   }
 
 }
