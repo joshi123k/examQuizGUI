@@ -1,8 +1,10 @@
+<app-navbar></app-navbar>
 <div class="bootstrap-wrapper">
     <div class="container">
         <div class="row" >
             <div class="col-md-6 offset-md-3">
-                <div class="container text-center" style="margin-top:20px ;">
+            <mat-card>
+                <div class="container text-center mt10">
                     <img src="../../../assets/logo.png" alt="">
                 </div>
                 <h1 class="text-center">Signup Here</h1>
@@ -75,9 +77,10 @@
 
                     <div class="container text-center">
                         <button [disabled]="flag" type="submit" mat-raised-button color="primary">Register</button>
-                        <button type="reset" mat-raised-button color="accent" style="margin-left:10px">Reset</button>
+                        <button type="reset" mat-raised-button color="accent" class="ml10">Reset</button>
                     </div>
                 </form>
+            </mat-card>
             </div>
         </div>
     </div>

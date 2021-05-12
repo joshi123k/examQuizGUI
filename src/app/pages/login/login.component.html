@@ -1,19 +1,21 @@
+<app-navbar></app-navbar>
 <div class="bootstrap-wrapper">
     <div class="container">
         <div class="row" >
             <div class="col-md-6 offset-md-3">
-                <div class="container text-center" style="margin-top:20px ;">
+            <mat-card>
+                <div class="container text-center mt20">
                     <img src="../../../assets/logo.png" alt="">
                 </div>
                 <h1 class="text-center">Login Here</h1>
-
+                {{loginData | json}}
                 <form (ngSubmit)="formlogin()">
                     <!--Username-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>User Name</mat-label>
                         <input matInput
-                        required
-                        [(ngModel)]="user.username" 
+                        [(ngModel)]="loginData.username"
+                        required 
                         name="username"
                         placeholder="username">
                     </mat-form-field>
@@ -23,27 +25,18 @@
                      <mat-form-field class="full-width" appearance="outline">
                         <mat-label>User Password</mat-label>
                         <input type="password" matInput
-                        required
-                        [(ngModel)]="user.password" 
+                        [(ngModel)]="loginData.password"
+                        required 
                         name="password"
                         placeholder="userpassword">
                     </mat-form-field>
-
                     
-
-                   
-
-            
-
-                
-
-                    
-
                     <div class="container text-center">
                         <button  type="submit" mat-raised-button color="primary">Login</button>
                         <!--<button type="reset" mat-raised-button color="accent" style="margin-left:10px">Reset</button> -->
                     </div>
                 </form>
+            </mat-card>
             </div>
         </div>
     </div>
