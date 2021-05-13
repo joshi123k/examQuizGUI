@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
     password:''
   }
 
-  constructor(private snake:MatSnackBar) { }
+  constructor(private snake:MatSnackBar,private login:LoginService) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
       this.snake.open(
         "Username is required!!",'',{duration:3000}
       );
-      return
+      return;
     }
 
     if(this.loginData.password.trim()=='' || this.loginData.password.trim()==null)
@@ -33,8 +34,26 @@ export class LoginComponent implements OnInit {
       this.snake.open(
         "password is required!!",'',{duration:3000}
       );
-      return
+      return;
     }
+
+
+    this.login.generateToken(this.loginData).subscribe(
+
+      (response:any)=>
+      {
+        console.log(response.token)
+        this.login.loginUser(response.token)
+        this.login.getCurrentUser().subscribe(
+          (user:any)=>{
+              this.login.setUser(user);
+          }
+        )
+        window.location.href="/dashboard"
+      },
+      error=>{console.log(error)}
+
+    )
 
 
   }
