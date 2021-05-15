@@ -47,11 +47,28 @@ export class LoginComponent implements OnInit {
         this.login.getCurrentUser().subscribe(
           (user:any)=>{
               this.login.setUser(user);
+              if(this.login.getUserRole()=="ADMIN")
+              {
+                //redirect to admin
+                window.location.href="/admin"
+              }else if(this.login.getUserRole()=="NORMAL")
+              {
+                //redirect to normal user
+                window.location.href="/user-dashboard"
+              }
+              else{
+                //logout
+               // window.location.href="/dashboard"
+               this.login.loggedOut()
+              }
           }
         )
-        window.location.href="/dashboard"
+        
       },
-      error=>{console.log(error)}
+      error=>{
+        console.log(error)
+        this.snake.open("Invalid Details !! Try Again"," ",{duration:3000})
+      }
 
     )
 
